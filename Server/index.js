@@ -11,7 +11,7 @@ connectDB();
 const app = express();
 
 const allowedOrigins = [
-    'https://e-shopy.onrender.com',
+    'https://e-shopy-mu.vercel.app/',
 ];
 // middleware 
 app.use(cors({
