@@ -19,7 +19,7 @@ const ProductDetail = () => {
       }
     
       try {
-        const response = await axios.get(`${BACKEND_URL}/${id}`);
+        const response = await axios.get(`${BACKEND_URL}/api/products/${id}`);
         setProduct(response.data);
       } catch (error) {
         console.error('Error fetching product:', error);

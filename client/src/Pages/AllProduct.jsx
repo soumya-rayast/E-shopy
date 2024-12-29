@@ -19,7 +19,7 @@ const AllProduct = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}`); 
+        const response = await axios.get(`${BACKEND_URL}/api/products`); 
         setProducts(response.data);
         console.log(response.data);
         

@@ -8,10 +8,12 @@ export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+
+    // Fetch products on mount
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const { data } = await axios.get(`${BACKEND_URL}`);
+                const { data } = await axios.get(`${BACKEND_URL}/api/products/`);
                 setProducts(data);
                 setFilteredProducts(data);
             } catch (error) {
@@ -29,6 +31,7 @@ export const ProductProvider = ({ children }) => {
         setFilteredProducts(filtered); 
     }, [searchTerm, products]);
 
+    // Provide context value
     return (
         <ProductContext.Provider value={{ products, filteredProducts, setSearchTerm }}>
             {children}

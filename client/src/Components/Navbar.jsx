@@ -4,15 +4,18 @@ import { IoSearch } from 'react-icons/io5';
 import { FaUserLarge, FaBars } from 'react-icons/fa6';
 import { FaTimes } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
+import { useProductContext } from '../context/ProductContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-
+  const { setSearchTerm } = useProductContext(); 
   // Apply theme classes
   const navClass = theme === 'light' ? 'bg-white text-black' : 'bg-gray-800 text-white';
   const menuClass = isMenuOpen ? (theme === 'light' ? 'bg-white shadow-lg' : 'bg-gray-800 shadow-lg') : 'bg-transparent md:bg-transparent';
-
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value); 
+  };
   return (
     <nav className={`h-16 w-full sticky top-0 flex justify-between items-center px-4 md:px-8 border-b ${theme === 'light' ? 'border-gray-300' : 'border-gray-700'} ${navClass}`}>
       {/* Logo */}
@@ -27,6 +30,7 @@ const Navbar = () => {
         <IoSearch className="absolute ml-3 text-gray-500" />
         <input
           type="text"
+          onChange={handleSearchChange}
           placeholder="Search your product"
           className="bg-gray-100 py-1 px-8 pl-10 rounded-2xl outline-none w-64"
         />

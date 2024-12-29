@@ -14,7 +14,7 @@ const Dashboard = () => {
 
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get(`${BACKEND_URL}`);
+      const { data } = await axios.get(`${BACKEND_URL}/api/products`);
       console.log('Fetched data:', data);
       setProducts(Array.isArray(data) ? data : []);
     } catch (error) {
@@ -27,7 +27,7 @@ const Dashboard = () => {
   // Add Product
   const handleAddProduct = async () => {
     try {
-      const { data } = await axios.post(`${BACKEND_URL}`, newProduct);
+      const { data } = await axios.post(`${BACKEND_URL}/api/products`, newProduct);
       setProducts((prevProducts) => [...prevProducts, data]);
       setNewProduct({ name: '', price: '', description: '', stock: '', category: '' });
     } catch (error) {
@@ -38,7 +38,7 @@ const Dashboard = () => {
   // Update Product
   const handleUpdateProduct = async () => {
     try {
-      const { data } = await axios.put(`${BACKEND_URL}/${editProduct._id}`, editProduct);
+      const { data } = await axios.put(`${BACKEND_URL}/api/products/${editProduct._id}`, editProduct);
       setProducts(products.map((product) => (product._id === data._id ? data : product)));
       setEditProduct(null);
     } catch (error) {
@@ -49,7 +49,7 @@ const Dashboard = () => {
   // Delete Product
   const handleDeleteProduct = async (id) => {
     try {
-      await axios.delete(`${BACKEND_URL}/${id}`);
+      await axios.delete(`${BACKEND_URL}/api/products/${id}`);
       setProducts(products.filter((product) => product._id !== id));
     } catch (error) {
       console.error('Error deleting product:', error);
