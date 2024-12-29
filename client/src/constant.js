@@ -1,2 +1,2 @@
-const BACKEND_URL = "https://shuttershare-backend.onrender.com";
+const BACKEND_URL = "" ;
 export default BACKEND_URL;

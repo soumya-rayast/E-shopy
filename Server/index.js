@@ -10,21 +10,14 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = [
-    'https://e-shopy.onrender.com',
-];
-// middleware 
 app.use(cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true, 
-  }));
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.send("<center><h1>Server Running Dudes...</h1></center>");
+});
 
 // product route
 app.use('/api/products', productRoutes);
