@@ -11,7 +11,7 @@ connectDB();
 const app = express();
 
 const allowedOrigins = [
-    'https://e-shopy-mu.vercel.app/',
+    'https://e-shopy-d22o1nxed-soumya-rayasts-projects.vercel.app/',
 ];
 // middleware 
 app.use(cors({
